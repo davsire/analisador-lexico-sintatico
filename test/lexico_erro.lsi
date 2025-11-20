@@ -1,0 +1,10 @@
+def funcao(int dividendo, int divisor):
+    if (dividendo % divisor >= 1) {
+        print(dividendo);
+    } else {
+        print(divisor);
+    }
+    return;
+
+float numero = 5.0;
+funcao(numero, 2);

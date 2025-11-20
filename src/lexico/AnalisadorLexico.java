@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,10 +39,10 @@ public class AnalisadorLexico {
 		while (!this.isFimArquivo()) {
 			this.iterarCaracteresBrancos();
 
-			if (Character.isDigit(this.getCaracterAtual())) this.analisarTokenNumerico();
+			if (AnalisadorLexico.INICIO_RELOP.contains(this.getCaracterAtual())) this.analisarTokenRelop();
+			else if (Character.isDigit(this.getCaracterAtual())) this.analisarTokenNumerico();
 			else if (Character.isLetter(this.getCaracterAtual())) this.analisarTokenPalavra();
-			else if (AnalisadorLexico.INICIO_RELOP.contains(this.getCaracterAtual())) this.analisarTokenRelop();
-			else this.analisarTokenOutro();
+			else if (!this.isFimArquivo()) this.analisarTokenOutro();
 		}
 
 		this.fecharArquivo();
@@ -163,7 +164,6 @@ public class AnalisadorLexico {
 			case '-' -> this.tokens.add(new Token(Tag.SUBT));
 			case '*' -> this.tokens.add(new Token(Tag.MULT));
 			case '/' -> this.tokens.add(new Token(Tag.DIV));
-			case '=' -> this.tokens.add(new Token(Tag.ATRIBUICAO));
 			case '(' -> this.tokens.add(new Token(Tag.PARENTESE_E));
 			case ')' -> this.tokens.add(new Token(Tag.PARENTESE_D));
 			case '{' -> this.tokens.add(new Token(Tag.CHAVE_E));
@@ -173,7 +173,7 @@ public class AnalisadorLexico {
 			default -> caracterDesconhecido = true;
 		}
 
-		if (caracterDesconhecido && !this.isFimArquivo()) {
+		if (caracterDesconhecido) {
 			throw new Exception(String.format("ERRO: Erro léxico na linha %d, coluna %d", this.numeroLinha, this.numeroColuna));
 		}
 
@@ -191,9 +191,9 @@ public class AnalisadorLexico {
 	}
 
 	private void imprimirResultado() {
-		System.out.println("------ TOKENS");
+		System.out.println("--- TOKENS ---");
 		System.out.printf("[%s]%n%n", this.tokens.stream().map(Token::toString).collect(Collectors.joining(", ")));
-		System.out.println("------ TABELA DE SÍMBOLOS");
+		System.out.println("--- TABELA DE SÍMBOLOS ---");
 		this.tabelaSimbolos.forEach((chave, valor) -> System.out.println(chave + ": " + valor));
 		System.out.println();
 	}
