@@ -1,0 +1,29 @@
+package lexico;
+
+public enum Tag {
+	ID,
+	NUM,
+	MENOR,
+	MAIOR,
+	MENOR_IGUAL,
+	MAIOR_IGUAL,
+	IGUAL,
+	DIFERENTE,
+	INT,
+	IF,
+	ELSE,
+	DEF,
+	PRINT,
+	RETURN,
+	SOMA,
+	SUBT,
+	MULT,
+	DIV,
+	ATRIBUICAO,
+	PARENTESE_E,
+	PARENTESE_D,
+	CHAVE_E,
+	CHAVE_D,
+	VIRGULA,
+	PONTO_VIRGULA
+}
