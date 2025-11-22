@@ -1,11 +1,8 @@
 def funcao(int dividendo, int divisor) {
     if (dividendo / divisor >= 1) {
-        print(dividendo);
+        print dividendo;
     } else {
-        print(divisor);
+        print divisor;
     }
     return;
 }
-
-int numero = 5;
-funcao(numero, 2);
