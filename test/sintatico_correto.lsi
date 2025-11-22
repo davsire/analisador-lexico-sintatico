@@ -1,0 +1,62 @@
+def validarTriangulo(int ladoA, int ladoB, int ladoC) {
+    int somaAB, somaBC, somaAC, true, false;
+
+    true = 1;
+    false = 0;
+    somaAB = ladoA + ladoB;
+    somaBC = ladoB + ladoC;
+    somaAC = ladoA + ladoC;
+
+    if (somaAB < ladoC) {
+        return false;
+    }
+    if (somaBC < ladoA) {
+        return false;
+    }
+    if (somaAC < ladoB) {
+        return false;
+    }
+    return true;
+}
+
+def validarTipoTriangulo(int ladoA, int ladoB, int ladoC) {
+    int equilatero, isoceles, escaleno, tipo;
+
+    equilatero = 1;
+    isoceles = 2;
+    escaleno = 3;
+
+    if (ladoA == ladoB) {
+        if (ladoB == ladoC) {
+            return equilatero;
+        }
+    } else {
+        if (ladoB == ladoC) {
+            return isoceles;
+        } else {
+            if (ladoA == ladoC) {
+                return isoceles;
+            } else {
+                return escaleno;
+            }
+        }
+    }
+}
+
+def main() {
+    int ladoA, ladoB, ladoC, isTriangulo, tipo;
+    ladoA = 3;
+    ladoB = 4;
+    ladoC = 5;
+
+    isTriangulo = validarTriangulo(ladoA, ladoB, ladoC);
+
+    if (isTriangulo == 1) {
+        {
+            tipo = validarTipoTriangulo(ladoA, ladoB, ladoC);
+            print tipo;
+        }
+    } else {
+        print 0;
+    }
+}

@@ -1,0 +1,24 @@
+def fibonnaci(int numero) {
+    if (numero == 0) {
+        return numero;
+    } else {
+        int numeroMenos1, numeroMenos2, fibonnaciMenos1, fibonnaciMenos2, resultado;
+
+        numeroMenos1 = numero - 1;
+        numeroMenos2 = numero - 2;
+
+        fibonnaciMenos1 = fibonnaci(numeroMenos1);
+        fibonnaciMenos2 = fibonnaci(numeroMenos2);
+
+        resultado = fibonnaciMenos1 + fibonnaciMenos2;
+
+        return resultado;
+    }
+}
+
+def main() {
+    int numero, resultado;
+
+    numero = 5;
+    resultado = fibonnaci(numero);
+}

@@ -1,6 +1,6 @@
-package lexico;
+package enums;
 
-public enum Tag {
+public enum Terminal {
 	ID,
 	NUM,
 	MENOR,
@@ -25,5 +25,6 @@ public enum Tag {
 	CHAVE_E,
 	CHAVE_D,
 	VIRGULA,
-	PONTO_VIRGULA
+	PONTO_VIRGULA,
+	$
 }

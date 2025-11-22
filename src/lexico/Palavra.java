@@ -1,11 +1,13 @@
 package lexico;
 
+import enums.Terminal;
+
 public class Palavra extends Token {
 
 	private final String palavra;
 
-	public Palavra(Tag tag, String palavra) {
-		super(tag);
+	public Palavra(Terminal terminal, String palavra) {
+		super(terminal);
 		this.palavra = palavra;
 	}
 

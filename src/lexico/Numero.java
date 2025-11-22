@@ -1,11 +1,13 @@
 package lexico;
 
+import enums.Terminal;
+
 public class Numero extends Token {
 
 	private final int valor;
 
 	public Numero(int valor) {
-		super(Tag.NUM);
+		super(Terminal.NUM);
 		this.valor = valor;
 	}
 

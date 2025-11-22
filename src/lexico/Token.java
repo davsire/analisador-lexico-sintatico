@@ -1,19 +1,21 @@
 package lexico;
 
+import enums.Terminal;
+
 public class Token {
 
-	private final Tag tag;
+	private final Terminal terminal;
 
-	public Token(Tag tag) {
-		this.tag = tag;
+	public Token(Terminal terminal) {
+		this.terminal = terminal;
 	}
 
-	public Tag getTag() {
-		return this.tag;
+	public Terminal getTerminal() {
+		return this.terminal;
 	}
 
 	@Override
 	public String toString() {
-		return this.tag.name();
+		return this.terminal.name();
 	}
 }

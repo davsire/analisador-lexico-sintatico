@@ -1,0 +1,16 @@
+def soma(int A, int B) {
+    int C;
+    C = A + B;
+    return C;
+}
+
+def main() {
+    int operando1;
+    int operando2;
+
+    operando1 = 2;
+    operando2 = 4;
+
+    int resultado = soma(operando1, operando2);
+    print resultado;
+}

@@ -1,0 +1,22 @@
+int resultado, numero;
+numero = 5;
+resultado = fatorial(numero);
+
+def fatorial(int numero) {
+    int um;
+    um = 1;
+
+    if (numero == 0) {
+        return um;
+    }
+    if (numero == 1) {
+        return um;
+    }
+
+    int menos1, fatorialMenos1, resultado;
+
+    menos1 = numero - um;
+    fatorialMenos1 = fatorial(menos1);
+    resultado = numero * fatorialMenos1;
+    return resultado;
+}

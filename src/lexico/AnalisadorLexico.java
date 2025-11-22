@@ -1,5 +1,7 @@
 package lexico;
 
+import enums.Terminal;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -29,7 +31,7 @@ public class AnalisadorLexico {
 			this.caracterAtual = this.reader.read();
 			this.inicializarTabelaSimbolos();
 		} catch (FileNotFoundException e) {
-			throw new Exception("ERRO: Arquivo não encontrado!");
+			throw new Exception("ERRO: Arquivo não encontrado.");
 		} catch (IOException e) {
 			throw new Exception("ERRO: Erro ao ler o arquivo: " + e.getMessage());
 		}
@@ -87,7 +89,7 @@ public class AnalisadorLexico {
 		if (this.tabelaSimbolos.containsKey(palavra)) {
 			this.tokens.add(this.tabelaSimbolos.get(palavra));
 		} else {
-			Token tokenIdentificador = new Palavra(Tag.ID, palavra);
+			Token tokenIdentificador = new Palavra(Terminal.ID, palavra);
 			this.tabelaSimbolos.put(palavra, tokenIdentificador);
 			this.tokens.add(tokenIdentificador);
 		}
@@ -111,29 +113,29 @@ public class AnalisadorLexico {
 				}
 				case 1 -> {
 					if (this.getCaracterAtual() == '=') {
-						this.tokens.add(new Token(Tag.MENOR_IGUAL));
+						this.tokens.add(new Token(Terminal.MENOR_IGUAL));
 						aceita = true;
 						this.avancarArquivo();
 						this.numeroColuna++;
 					} else {
-						this.tokens.add(new Token(Tag.MENOR));
+						this.tokens.add(new Token(Terminal.MENOR));
 						aceita = true;
 					}
 				}
 				case 2 -> {
 					if (this.getCaracterAtual() == '=') {
-						this.tokens.add(new Token(Tag.MAIOR_IGUAL));
+						this.tokens.add(new Token(Terminal.MAIOR_IGUAL));
 						aceita = true;
 						this.avancarArquivo();
 						this.numeroColuna++;
 					} else {
-						this.tokens.add(new Token(Tag.MAIOR));
+						this.tokens.add(new Token(Terminal.MAIOR));
 						aceita = true;
 					}
 				}
 				case 3 -> {
 					if (this.getCaracterAtual() == '=') {
-						this.tokens.add(new Token(Tag.DIFERENTE));
+						this.tokens.add(new Token(Terminal.DIFERENTE));
 						aceita = true;
 						this.avancarArquivo();
 						this.numeroColuna++;
@@ -143,12 +145,12 @@ public class AnalisadorLexico {
 				}
 				case 4 -> {
 					if (this.getCaracterAtual() == '=') {
-						this.tokens.add(new Token(Tag.IGUAL));
+						this.tokens.add(new Token(Terminal.IGUAL));
 						aceita = true;
 						this.avancarArquivo();
 						this.numeroColuna++;
 					} else {
-						this.tokens.add(new Token(Tag.ATRIBUICAO));
+						this.tokens.add(new Token(Terminal.ATRIBUICAO));
 						aceita = true;
 					}
 				}
@@ -160,16 +162,16 @@ public class AnalisadorLexico {
 		boolean caracterDesconhecido = false;
 
 		switch (this.getCaracterAtual()) {
-			case '+' -> this.tokens.add(new Token(Tag.SOMA));
-			case '-' -> this.tokens.add(new Token(Tag.SUBT));
-			case '*' -> this.tokens.add(new Token(Tag.MULT));
-			case '/' -> this.tokens.add(new Token(Tag.DIV));
-			case '(' -> this.tokens.add(new Token(Tag.PARENTESE_E));
-			case ')' -> this.tokens.add(new Token(Tag.PARENTESE_D));
-			case '{' -> this.tokens.add(new Token(Tag.CHAVE_E));
-			case '}' -> this.tokens.add(new Token(Tag.CHAVE_D));
-			case ',' -> this.tokens.add(new Token(Tag.VIRGULA));
-			case ';' -> this.tokens.add(new Token(Tag.PONTO_VIRGULA));
+			case '+' -> this.tokens.add(new Token(Terminal.SOMA));
+			case '-' -> this.tokens.add(new Token(Terminal.SUBT));
+			case '*' -> this.tokens.add(new Token(Terminal.MULT));
+			case '/' -> this.tokens.add(new Token(Terminal.DIV));
+			case '(' -> this.tokens.add(new Token(Terminal.PARENTESE_E));
+			case ')' -> this.tokens.add(new Token(Terminal.PARENTESE_D));
+			case '{' -> this.tokens.add(new Token(Terminal.CHAVE_E));
+			case '}' -> this.tokens.add(new Token(Terminal.CHAVE_D));
+			case ',' -> this.tokens.add(new Token(Terminal.VIRGULA));
+			case ';' -> this.tokens.add(new Token(Terminal.PONTO_VIRGULA));
 			default -> caracterDesconhecido = true;
 		}
 
@@ -182,12 +184,12 @@ public class AnalisadorLexico {
 	}
 
 	private void inicializarTabelaSimbolos() {
-		this.tabelaSimbolos.put("int", new Palavra(Tag.INT, "int"));
-		this.tabelaSimbolos.put("if", new Palavra(Tag.IF, "if"));
-		this.tabelaSimbolos.put("else", new Palavra(Tag.ELSE, "else"));
-		this.tabelaSimbolos.put("def", new Palavra(Tag.DEF, "def"));
-		this.tabelaSimbolos.put("print", new Palavra(Tag.PRINT, "print"));
-		this.tabelaSimbolos.put("return", new Palavra(Tag.RETURN, "return"));
+		this.tabelaSimbolos.put("int", new Palavra(Terminal.INT, "int"));
+		this.tabelaSimbolos.put("if", new Palavra(Terminal.IF, "if"));
+		this.tabelaSimbolos.put("else", new Palavra(Terminal.ELSE, "else"));
+		this.tabelaSimbolos.put("def", new Palavra(Terminal.DEF, "def"));
+		this.tabelaSimbolos.put("print", new Palavra(Terminal.PRINT, "print"));
+		this.tabelaSimbolos.put("return", new Palavra(Terminal.RETURN, "return"));
 	}
 
 	private void imprimirResultado() {

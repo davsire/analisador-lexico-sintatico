@@ -1,4 +1,8 @@
 import lexico.AnalisadorLexico;
+import lexico.Token;
+import sintatico.AnalisadorSintatico;
+
+import java.util.List;
 
 public class Main {
 
@@ -11,11 +15,23 @@ public class Main {
 			return;
 		}
 
+		List<Token> tokens;
 		try {
 			AnalisadorLexico analisadorLexico = new AnalisadorLexico(caminhoArquivo);
-			analisadorLexico.analisar();
+			tokens = analisadorLexico.analisar();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return;
 		}
+
+		try {
+			AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico(tokens);
+			analisadorSintatico.analisar();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return;
+		}
+
+		System.out.println("SUCESSO: O programa escrito é válido com a linguagem LSI-2025-2.");
 	}
 }
