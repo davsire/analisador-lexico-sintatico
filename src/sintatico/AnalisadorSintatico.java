@@ -37,7 +37,7 @@ public class AnalisadorSintatico {
 				tokenAtual = iteradorToken.next();
 				this.pilha.pop();
 			} else if (simboloAtual instanceof Terminal) {
-				throw new Exception(String.format("ERRO: Erro sintático - token esperado: %s, token recebido: %s", simboloAtual.name(), tokenAtual.name()));
+				throw new Exception(String.format("ERRO: Erro sintático - token esperado: %s, token recebido: %s.", simboloAtual.name(), tokenAtual.name()));
 			} else {
 				List<Enum> producao = this.obterEntradaTabela((NaoTerminal) simboloAtual, tokenAtual);
 				this.pilha.pop();
@@ -60,7 +60,7 @@ public class AnalisadorSintatico {
 
 	public List<Enum> obterEntradaTabela(NaoTerminal naoTerminal, Terminal terminal) throws Exception {
 		if (!this.tabelaReconhecimento.get(naoTerminal).containsKey(terminal)) {
-			throw new Exception(String.format("ERRO: Erro sintático - sem produção válida para o não-terminal %s com o token %s", naoTerminal.name(), terminal.name()));
+			throw new Exception(String.format("ERRO: Erro sintático - sem produção válida para o não-terminal %s com o token %s.", naoTerminal.name(), terminal.name()));
 		}
 		return this.tabelaReconhecimento.get(naoTerminal).get(terminal);
 	}

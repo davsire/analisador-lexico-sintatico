@@ -140,7 +140,7 @@ public class AnalisadorLexico {
 						this.avancarArquivo();
 						this.numeroColuna++;
 					} else {
-						throw new Exception(String.format("ERRO: Erro léxico na linha %d, coluna %d", this.numeroLinha, this.numeroColuna - 1));
+						throw new Exception(String.format("ERRO: Erro léxico na linha %d, coluna %d.", this.numeroLinha, this.numeroColuna - 1));
 					}
 				}
 				case 4 -> {
@@ -176,7 +176,7 @@ public class AnalisadorLexico {
 		}
 
 		if (caracterDesconhecido) {
-			throw new Exception(String.format("ERRO: Erro léxico na linha %d, coluna %d", this.numeroLinha, this.numeroColuna));
+			throw new Exception(String.format("ERRO: Erro léxico na linha %d, coluna %d.", this.numeroLinha, this.numeroColuna));
 		}
 
 		this.avancarArquivo();
