@@ -1,5 +1,5 @@
 def funcao(int dividendo, int divisor) {
-    if (dividendo / divisor >= 1.0) {
+    if (dividendo % divisor >= 1.0) {
         print dividendo;
     } else {
         print divisor;
